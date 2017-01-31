@@ -29,7 +29,7 @@ impl Metainf for CellType {
 }
 
 trait Metaformat<T> {
-    fn construct(type: CellMetatype, name: String) -> T;
+    fn construct(type_: CellMetatype, name: String) -> T;
 }
 
 pub struct CellFormat {
@@ -42,9 +42,9 @@ pub struct Cell {
 }
 
 pub impl Metaformat<Cell> for Cell {
-    fn construct(type: CellMetatype, name: String) -> Cell {
+    fn construct(type_: CellMetatype, name: String) -> Cell {
         return match type {
-            CellMetatype::tInt32 => Cell { value: None, name: name }
+            CellMetatype::tInt32 => Cell { value: CellType::Int32(None), name: name }
         }
     }
 }
