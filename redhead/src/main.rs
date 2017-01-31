@@ -1,4 +1,4 @@
-//use kernel::{Type};
+extern crate uuid;
 
 mod kernel;
 

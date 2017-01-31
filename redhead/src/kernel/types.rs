@@ -1,5 +1,3 @@
-extern crate uuid;
-
 use uuid::Uuid;
 
 use std::option::Option;

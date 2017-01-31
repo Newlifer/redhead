@@ -1,7 +1,8 @@
 [package]
 name = "redhead"
 version = "0.1.0"
-authors = ["aa.novozhilov <aa.novozhilov@tensor.ru>"]
+authors = ["Aleksandr Novozhilov <alex.newlifer@gmail.com>"]
+license = "MIT"
 
 [dependencies]
 uuid = {version = "0.3.1", features = ["v4"]}
