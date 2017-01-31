@@ -1,0 +1,6 @@
+[package]
+name = "dashie"
+version = "0.1.0"
+authors = ["aa.novozhilov <aa.novozhilov@tensor.ru>"]
+
+[dependencies]
