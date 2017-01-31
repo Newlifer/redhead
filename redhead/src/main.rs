@@ -1,5 +1,5 @@
 use kernel::{Type};
 
 fn main() {
-    println!("Hello, world!");
+    println!("Chpokey!");
 }
