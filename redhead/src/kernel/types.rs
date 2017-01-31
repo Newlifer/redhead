@@ -47,16 +47,41 @@ impl Metaformat<Cell> for Cell {
     }
 }
 
+pub struct RowFormat {
+    cols: Vec<CellFormat>
+}
+
+trait Container<T> {
+    fn size(&self) -> usize;
+    fn push(&mut self, item: T);
+    //fn remove
+}
+
 pub struct Row {
-    cells: Vec<CellType>
+    cells: Vec<Cell>
+}
+
+impl Container<Cell> for Row {
+    fn size(&self) -> usize {
+        return self.cells.len();
+    }
+
+    fn push(&mut self, item: Cell) {
+        self.cells.push(item);
+    }
 }
 
 pub struct Table {
+    name: String,
     rows: Vec<Row>
 }
 
-trait ISet {
-    fn size(&self) -> usize;
-    fn add(&mut self, row: Row);
-    fn remove(&mut self, index: usize); // FIXME
+impl Container<Row> for Table {
+    fn size(&self) -> usize {
+        return self.rows.len();
+    }
+
+    fn push(&mut self, item: Row) {
+        self.rows.push(item);
+    }
 }
