@@ -1,3 +1,7 @@
+extern crate uuid;
+
+use uuid::Uuid;
+
 use std::option::Option;
 
 type OptInt32 = Option<i32>;
@@ -58,6 +62,7 @@ trait Container<T> {
 }
 
 pub struct Row {
+    guid: Uuid,
     cells: Vec<Cell>
 }
 
