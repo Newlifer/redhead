@@ -43,7 +43,7 @@ pub struct Cell {
 
 pub impl Metaformat<Cell> for Cell {
     fn construct(type_: CellMetatype, name: String) -> Cell {
-        return match type {
+        return match type_ {
             CellMetatype::tInt32 => Cell { value: CellType::Int32(None), name: name }
         }
     }
