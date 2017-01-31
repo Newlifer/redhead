@@ -10,6 +10,10 @@ pub enum CellType {
     Text  (OptString)
 }
 
+pub enum CellMetatype {
+    tInt32
+}
+
 trait Metainf {
     fn name(&self) -> String;
 }
@@ -24,8 +28,26 @@ impl Metainf for CellType {
     }
 }
 
-//pub struct Format {
-//}
+trait Metaformat<T> {
+    fn construct(type: CellMetatype, name: String) -> T;
+}
+
+pub struct CellFormat {
+    name: String,
+    type: CellMetatype
+}
+
+pub struct Cell {
+    value: CellType
+}
+
+pub impl Metaformat<Cell> for Cell {
+    fn construct(type: CellMetatype, name: String) -> Cell {
+        return match type {
+            CellMetatype::tInt32 => Cell { value: None, name: name }
+        }
+    }
+}
 
 pub struct Row {
     cells: Vec<CellType>
