@@ -34,7 +34,7 @@ trait Metaformat<T> {
 
 pub struct CellFormat {
     name: String,
-    type: CellMetatype
+    type_: CellMetatype
 }
 
 pub struct Cell {
