@@ -1,3 +1,1 @@
-use self::Type;
-
-pub mod kernel;
+pub mod types;

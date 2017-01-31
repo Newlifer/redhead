@@ -1,12 +1,11 @@
-enum Type {
+pub enum Type {
     Int32(i32)
 }
 
-
-struct Row {
+pub struct Row {
     cells: Vec<Type>
 }
 
-struct Table {
+pub struct Table {
     rows: Vec<Row>
 }
