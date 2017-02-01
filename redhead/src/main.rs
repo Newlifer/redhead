@@ -1,5 +1,3 @@
-extern crate uuid;
-
 mod kernel;
 
 fn main() {
