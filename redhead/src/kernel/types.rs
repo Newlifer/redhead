@@ -66,18 +66,22 @@ impl Formattable for Rec {
 }
 */
 
-pub struct Table {
-    pub name: Option<String>,
+pub struct RecCollection {
     pub rows: Vec<Rec>,
     pub format: Arc<RwLock<RecFormat>>
 }
 
-impl Table {
-    pub fn new(format: Arc<RwLock<RecFormat>>) -> Table {
+impl RecCollection {
+    pub fn new(format: Arc<RwLock<RecFormat>>) -> RecCollection {
         return Table {
             format: format,
-            name: None,
             rows: Vec::new()
         };
     }
+}
+
+pub struct Table {
+    pub data: RecCollection,
+    pub guid: Uuid,
+    pub name: String
 }

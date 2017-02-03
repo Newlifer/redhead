@@ -6,7 +6,7 @@ use kernel::types::{ CellType,
                      CellFormat,
                      RecFormat,
                      Rec,
-                     Table };
+                     RecCollection };
 
 fn main() {
 
