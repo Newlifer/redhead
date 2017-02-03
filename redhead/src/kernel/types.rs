@@ -30,12 +30,12 @@ impl Metainf for CellType {
 }
 
 pub struct CellFormat {
-    name: String,
-    type_: CellType
+    pub name: String,
+    pub type_: CellType
 }
 
 pub struct RecFormat {
-    cols: Vec<CellFormat>
+    pub cols: Vec<CellFormat>
 }
 
 trait Metaformat<T> {
