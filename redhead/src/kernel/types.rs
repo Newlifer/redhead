@@ -10,17 +10,11 @@ type OptInt64 = Option<i64>;
 type OptString = Option<String>;
 
 
-//#[derive(Copy)]
+#[derive(Clone)]
 pub enum CellType {
     Int32 (OptInt32),
     Int64 (OptInt64),
     Text  (OptString)
-}
-
-impl Clone for CellType {
-    fn clone(&self) -> CellType {
-        *self;
-    }
 }
 
 trait Metainf {
