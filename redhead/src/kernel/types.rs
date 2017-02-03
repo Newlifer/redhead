@@ -32,11 +32,13 @@ impl RecFormat {
     }
 }
 
+/*
 trait Formattable {
     fn own_format(&mut self) {
         self.format = RecFormat::new(self.format.cols);
     }
 }
+*/
 
 pub struct Rec {
     pub guid: Uuid,
@@ -59,8 +61,10 @@ impl Rec {
     }
 }
 
+/*
 impl Formattable for Rec {
 }
+*/
 
 pub struct Table {
     pub name: String,
@@ -71,6 +75,12 @@ pub struct Table {
 impl Table {
     pub fn new(format: Arc<RwLock<RecFormat>>) -> Table {
         return Table {
+            format: format
+        };
+    }
+    pub fn new(format: Arc<RwLock<RecFormat>>, name: String) -> Table {
+        return Table {
+            name: name,
             format: format
         };
     }
