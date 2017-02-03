@@ -42,19 +42,15 @@ trait Metaformat<T> {
     fn construct(format_: CellFormat) -> T;
 }
 
-pub struct Cell {
-    value: CellType
-}
-
-impl Metaformat<Cell> for Cell {
-    fn construct(format_: CellFormat) -> Cell {
-        return match format_.type_ {
-            CellType::Int32(_) => Cell { value: CellType::Int32(None) },
-            CellType::Int64(_) => Cell { value: CellType::Int64(None) },
-            CellType::Text(_) => Cell { value: CellType::Text(None) }
-        }
-    }
-}
+//impl Metaformat<Cell> for Cell {
+//    fn construct(format_: CellFormat) -> Cell {
+//        return match format_.type_ {
+//            CellType::Int32(_) => Cell { value: CellType::Int32(None) },
+//            CellType::Int64(_) => Cell { value: CellType::Int64(None) },
+//            CellType::Text(_) => Cell { value: CellType::Text(None) }
+//        }
+//    }
+//}
 
 trait Container<T> {
     fn size(&self) -> usize;
@@ -64,7 +60,7 @@ trait Container<T> {
 
 pub struct Rec {
     pub guid: Uuid,
-    pub cells: Vec<Cell>,
+    pub cells: Vec<CellType>,
     pub format: Arc<RwLock<RecFormat>>
 }
 
@@ -75,16 +71,16 @@ pub fn construct_rec(format: Arc<RwLock<RecFormat>>) -> Rec {
         format: format}
 }
 
-impl Container<Cell> for Rec {
+//impl Container<Cell> for Rec {
 
-    fn size(&self) -> usize {
-        return self.cells.len();
-    }
+//    fn size(&self) -> usize {
+//        return self.cells.len();
+//    }
 
-    fn push(&mut self, item: Cell) {
-        self.cells.push(item);
-    }
-}
+//    fn push(&mut self, item: Cell) {
+//        self.cells.push(item);
+//    }
+//}
 
 pub struct Table {
     pub name: String,
