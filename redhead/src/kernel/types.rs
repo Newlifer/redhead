@@ -68,10 +68,11 @@ pub struct Rec {
     pub format: Arc<RwLock<RecFormat>>
 }
 
-pub fn construct_rec(format: &RecFormat) -> Rec {
+pub fn construct_rec(format: Arc<RwLock<RecFormat>>) -> Rec {
+    let cells = format.read().unwrap().clone()
     Rec{guid: Uuid::new_v4(),
-        cells: vec![],
-        Arc::new(RwLock::new(format))}
+        cells: cells,
+        format: format}
 }
 
 impl Container<Cell> for Rec {
