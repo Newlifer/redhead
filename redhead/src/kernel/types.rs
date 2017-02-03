@@ -78,10 +78,4 @@ impl Table {
             format: format
         };
     }
-    pub fn new(format: Arc<RwLock<RecFormat>>, name: String) -> Table {
-        return Table {
-            name: name,
-            format: format
-        };
-    }
 }
