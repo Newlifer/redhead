@@ -65,7 +65,7 @@ pub struct Rec {
 }
 
 pub fn construct_rec(format: Arc<RwLock<RecFormat>>) -> Rec {
-    let cells = format.read().unwrap().cols.iter().map(|x| x.type_).collect::<Vec<CellType>>();
+    let cells = format.read().unwrap().cols.iter().map(|x| x.type_.clone()).collect::<Vec<CellType>>();
     return Rec{guid: Uuid::new_v4(),
         cells: cells,
         format: format}
