@@ -71,7 +71,7 @@ pub struct Rec {
 pub fn construct_rec(format: &RecFormat) -> Rec {
     Rec{guid: Uuid::new_v4(),
         cells: vec![],
-        Arc<RwLock<RecFormat>::new()>::new()}
+        Arc::new(RwLock::new(format))}
 }
 
 impl Container<Cell> for Rec {
