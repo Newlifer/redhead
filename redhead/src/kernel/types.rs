@@ -73,7 +73,7 @@ pub struct RecCollection {
 
 impl RecCollection {
     pub fn new(format: Arc<RwLock<RecFormat>>) -> RecCollection {
-        return Table {
+        return RecCollection {
             format: format,
             rows: Vec::new()
         };
