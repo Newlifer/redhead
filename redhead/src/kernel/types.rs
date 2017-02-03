@@ -33,7 +33,7 @@ impl RecFormat {
 }
 
 trait Formattable {
-    pub fn own_format(&mut self) {
+    fn own_format(&mut self) {
         self.format = RecFormat::new(self.format.cols);
     }
 }
