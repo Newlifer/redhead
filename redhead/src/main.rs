@@ -8,13 +8,11 @@ use kernel::types::{ CellType,
                      Rec,
                      Table };
 
-use std::sync::{Arc, RwLock};
-
 fn main() {
 
     {
-        let cell_format = CellFormat { name: "id".to_string(),
-                                       type_: CellType::Int32(None)
+        let cell_format = CellFormat { fieldname: "id".to_string(),
+                                       fieldtype: CellType::Int32(None)
                                      };
 
         let rec_format = RecFormat::new(vec![cell_format]);

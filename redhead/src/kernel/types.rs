@@ -18,8 +18,8 @@ pub enum CellType {
 }
 
 pub struct CellFormat {
-    pub name: String,
-    pub type_: CellType
+    pub fieldname: String,
+    pub fieldtype: CellType
 }
 
 pub struct RecFormat {
@@ -29,6 +29,12 @@ pub struct RecFormat {
 impl RecFormat {
     pub fn new(fields: Vec<CellFormat>) -> Arc<RwLock<RecFormat>> {
         return Arc::new(RwLock::new(RecFormat { cols: fields } ));
+    }
+}
+
+trait Formattable {
+    pub fn own_format(&mut self) {
+        self.format = RecFormat::new(self.format.cols);
     }
 }
 
@@ -53,8 +59,19 @@ impl Rec {
     }
 }
 
+impl Formattable for Rec {
+}
+
 pub struct Table {
     pub name: String,
     pub rows: Vec<Rec>,
     pub format: Arc<RwLock<RecFormat>>
+}
+
+impl Table {
+    pub fn new(format: Arc<RwLock<RecFormat>>) -> Table {
+        return Table {
+            format: format
+        };
+    }
 }
