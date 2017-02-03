@@ -17,7 +17,7 @@ fn main() {
     {
         let cell_format = CellFormat{name: "id".to_string(),
                                      type_: CellType::Int32(None)};
-        let rec_format = construct_rec(vec![cell_format]);
+        let rec_format = construct_recformat(vec![cell_format]);
         let rec = construct_rec(rec_format);
     }
 
