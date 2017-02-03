@@ -17,20 +17,6 @@ pub enum CellType {
     Text  (OptString)
 }
 
-trait Metainf {
-    fn name(&self) -> String;
-}
-
-impl Metainf for CellType {
-    fn name(&self) -> String {
-        return match *self {
-            CellType::Int32(_) => "INT32".to_string(),
-            CellType::Int64(_) => "INT64".to_string(),
-            CellType::Text(_) => "TEXT".to_string()
-        }
-    }
-}
-
 pub struct CellFormat {
     pub name: String,
     pub type_: CellType
@@ -40,24 +26,8 @@ pub struct RecFormat {
     pub cols: Vec<CellFormat>
 }
 
-trait Metaformat<T> {
-    fn construct(format_: CellFormat) -> T;
-}
-
-//impl Metaformat<Cell> for Cell {
-//    fn construct(format_: CellFormat) -> Cell {
-//        return match format_.type_ {
-//            CellType::Int32(_) => Cell { value: CellType::Int32(None) },
-//            CellType::Int64(_) => Cell { value: CellType::Int64(None) },
-//            CellType::Text(_) => Cell { value: CellType::Text(None) }
-//        }
-//    }
-//}
-
-trait Container<T> {
-    fn size(&self) -> usize;
-    fn push(&mut self, item: T);
-    //fn remove
+pub fn construct_rec(fields: Vec<CellFormat>) -> Arc<RwLock<RecFormat>> {
+    Arc::new(RwLock::new(RecFormat{cols: fields}));
 }
 
 pub struct Rec {
@@ -73,29 +43,8 @@ pub fn construct_rec(format: Arc<RwLock<RecFormat>>) -> Rec {
         format: format}
 }
 
-//impl Container<Cell> for Rec {
-
-//    fn size(&self) -> usize {
-//        return self.cells.len();
-//    }
-
-//    fn push(&mut self, item: Cell) {
-//        self.cells.push(item);
-//    }
-//}
-
 pub struct Table {
     pub name: String,
     pub rows: Vec<Rec>,
     pub format: Arc<RwLock<RecFormat>>
-}
-
-impl Container<Rec> for Table {
-    fn size(&self) -> usize {
-        return self.rows.len();
-    }
-
-    fn push(&mut self, item: Rec) {
-        self.rows.push(item);
-    }
 }
