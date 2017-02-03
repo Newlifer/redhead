@@ -1,5 +1,6 @@
 use std::sync::{Arc, RwLock};
 use std::option::Option;
+use std::clone::Clone;
 
 use uuid::Uuid;
 
@@ -9,10 +10,17 @@ type OptInt64 = Option<i64>;
 type OptString = Option<String>;
 
 
+//#[derive(Copy)]
 pub enum CellType {
     Int32 (OptInt32),
     Int64 (OptInt64),
     Text  (OptString)
+}
+
+impl Clone for CellType {
+    fn clone(&self) -> CellType {
+        *self;
+    }
 }
 
 trait Metainf {
