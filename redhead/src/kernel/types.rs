@@ -1,10 +1,13 @@
+use std::sync::{Arc, RwLock};
+use std::option::Option;
+
 use uuid::Uuid;
 
-use std::option::Option;
 
 type OptInt32 = Option<i32>;
 type OptInt64 = Option<i64>;
 type OptString = Option<String>;
+
 
 pub enum CellType {
     Int32 (OptInt32),
@@ -31,6 +34,10 @@ pub struct CellFormat {
     type_: CellType
 }
 
+pub struct RecFormat {
+    cols: Vec<CellFormat>
+}
+
 trait Metaformat<T> {
     fn construct(format_: CellFormat) -> T;
 }
@@ -49,22 +56,26 @@ impl Metaformat<Cell> for Cell {
     }
 }
 
-pub struct RowFormat {
-    cols: Vec<CellFormat>
-}
-
 trait Container<T> {
     fn size(&self) -> usize;
     fn push(&mut self, item: T);
     //fn remove
 }
 
-pub struct Row {
-    guid: Uuid,
-    cells: Vec<Cell>
+pub struct Rec {
+    pub guid: Uuid,
+    pub cells: Vec<Cell>,
+    pub format: Arc<RwLock<RecFormat>>
 }
 
-impl Container<Cell> for Row {
+pub fn construct_rec(format: &RecFormat) -> Rec {
+    Rec{guid: Uuid::new_v4(),
+        cells: vec![],
+        Arc<RwLock<RecFormat>::new()>::new()}
+}
+
+impl Container<Cell> for Rec {
+
     fn size(&self) -> usize {
         return self.cells.len();
     }
@@ -75,16 +86,17 @@ impl Container<Cell> for Row {
 }
 
 pub struct Table {
-    name: String,
-    rows: Vec<Row>
+    pub name: String,
+    pub rows: Vec<Rec>,
+    pub format: Arc<RwLock<RecFormat>>
 }
 
-impl Container<Row> for Table {
+impl Container<Rec> for Table {
     fn size(&self) -> usize {
         return self.rows.len();
     }
 
-    fn push(&mut self, item: Row) {
+    fn push(&mut self, item: Rec) {
         self.rows.push(item);
     }
 }
