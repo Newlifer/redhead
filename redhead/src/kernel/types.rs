@@ -67,7 +67,7 @@ impl Formattable for Rec {
 */
 
 pub struct Table {
-    pub name: String,
+    pub name: Option<String>,
     pub rows: Vec<Rec>,
     pub format: Arc<RwLock<RecFormat>>
 }
@@ -75,7 +75,9 @@ pub struct Table {
 impl Table {
     pub fn new(format: Arc<RwLock<RecFormat>>) -> Table {
         return Table {
-            format: format
+            format: format,
+            name: None,
+            rows: Vec::new()
         };
     }
 }
