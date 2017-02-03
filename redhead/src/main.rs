@@ -7,6 +7,7 @@ use kernel::types::{CellType,
                     RecFormat,
                     Rec,
                     Table,
+                    construct_recformat,
                     construct_rec};
 
 use std::sync::{Arc, RwLock};

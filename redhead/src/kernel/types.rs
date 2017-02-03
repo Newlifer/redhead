@@ -26,7 +26,7 @@ pub struct RecFormat {
     pub cols: Vec<CellFormat>
 }
 
-pub fn construct_rec(fields: Vec<CellFormat>) -> Arc<RwLock<RecFormat>> {
+pub fn construct_recformat(fields: Vec<CellFormat>) -> Arc<RwLock<RecFormat>> {
     Arc::new(RwLock::new(RecFormat{cols: fields}));
 }
 
