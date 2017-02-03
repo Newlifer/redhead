@@ -2,13 +2,11 @@ extern crate uuid;
 
 mod kernel;
 
-use kernel::types::{CellType,
-                    CellFormat,
-                    RecFormat,
-                    Rec,
-                    Table,
-                    construct_recformat,
-                    construct_rec};
+use kernel::types::{ CellType,
+                     CellFormat,
+                     RecFormat,
+                     Rec,
+                     Table };
 
 use std::sync::{Arc, RwLock};
 
@@ -19,9 +17,8 @@ fn main() {
                                        type_: CellType::Int32(None)
                                      };
 
-        //let rec_format = construct_recformat(vec![cell_format]);
         let rec_format = RecFormat::new(vec![cell_format]);
-        let rec = construct_rec(rec_format);
+        let rec = Rec::new(rec_format);
     }
 
     println!("Chpokey!");
